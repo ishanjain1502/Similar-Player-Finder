@@ -78,7 +78,9 @@ def process_user_input(player_positions, speed, physic, defense, dribbling, shoo
 def find_similar_players(user_features, combined_features, player_names, top_n=3):
     similarities = cosine_similarity(user_features, combined_features).flatten()
     similar_indices = np.argsort(-similarities)[:top_n]
-    similar_players_names = df_selected_features.iloc[similar_indices].values
+    similar_players_names = df_selected_features.iloc[similar_indices]['short_name'].values
+    print('-------------------------------------\n\n\n\n', similar_players_names, '\n\n\n\n-------------------------')
+    similar_players_names = similar_players_names.tolist()
     return similar_players_names
 
 # API Endpoint
